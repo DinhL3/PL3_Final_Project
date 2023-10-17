@@ -1,7 +1,10 @@
 //this is O(n*log(n)) type of sorting
 
 public class HeapSort {
+    private static int numComparisons = 0;
+
     public static void sort(int[] array) {
+        numComparisons = 0;
         int length = array.length;
 
         // Build a max heap
@@ -25,12 +28,18 @@ public class HeapSort {
         int leftChild = 2 * rootIndex + 1;
         int rightChild = 2 * rootIndex + 2;
 
-        if (leftChild < size && array[leftChild] > array[largest]) {
-            largest = leftChild;
+        if (leftChild < size) {
+            numComparisons++; // increment the counter here
+            if (array[leftChild] > array[largest]) {
+                largest = leftChild;
+            }
         }
 
-        if (rightChild < size && array[rightChild] > array[largest]) {
-            largest = rightChild;
+        if (rightChild < size) {
+            numComparisons++; // increment the counter here
+            if (array[rightChild] > array[largest]) {
+                largest = rightChild;
+            }
         }
 
         if (largest != rootIndex) {
@@ -43,5 +52,9 @@ public class HeapSort {
         int temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
+    }
+
+    public static int getNumComparisons() {
+        return numComparisons;
     }
 }

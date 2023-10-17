@@ -1,9 +1,24 @@
 //this is O(n*log(n)) type of sorting
 
 public class MergeSort {
+    private static int numComparisons = 0;
 
     public static void sort(int[] array) {
+        numComparisons = 0;
         sort(array, 0, array.length - 1);
+    }
+
+    static void sort(int[] array, int left, int right) {
+        if (left < right) {
+            int middle = left + (right - left) / 2;
+
+            // Sort the first and second halves
+            sort(array, left, middle);
+            sort(array, middle + 1, right);
+
+            // Merge the sorted halves
+            merge(array, left, middle, right);
+        }
     }
 
     static void merge(int[] array, int left, int middle, int right) {
@@ -24,6 +39,8 @@ public class MergeSort {
         int k = left;
 
         while (i < leftSize && j < rightSize) {
+            numComparisons++;
+
             if (leftArray[i] <= rightArray[j]) {
                 array[k] = leftArray[i];
                 i++;
@@ -49,16 +66,7 @@ public class MergeSort {
         }
     }
 
-    static void sort(int[] array, int left, int right) {
-        if (left < right) {
-            int middle = left + (right - left) / 2;
-
-            // Sort the first and second halves
-            sort(array, left, middle);
-            sort(array, middle + 1, right);
-
-            // Merge the sorted halves
-            merge(array, left, middle, right);
-        }
+    public static int getNumComparisons() {
+        return numComparisons;
     }
 }
