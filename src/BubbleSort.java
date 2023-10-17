@@ -1,3 +1,5 @@
+//this is O(n^2) type of sorting
+
 public class BubbleSort {
     public static void sort(int[] arr) {
         int n = arr.length;

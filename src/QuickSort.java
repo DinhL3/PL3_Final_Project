@@ -1,3 +1,5 @@
+// not being used
+
 public class QuickSort {
     public static void sort(int[] arr) {
         sort(arr, 0, arr.length - 1);

@@ -1,3 +1,5 @@
+//this is O(n*log(n)) type of sorting
+
 public class HeapSort {
     public static void sort(int[] arr) {
         int n = arr.length;

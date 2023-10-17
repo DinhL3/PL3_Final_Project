@@ -1,3 +1,5 @@
+//this is O(n*log(n)) type of sorting
+
 public class MergeSort {
 
     public static void sort(int[] array) {
