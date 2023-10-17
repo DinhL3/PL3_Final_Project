@@ -2,10 +2,17 @@
 
 public class MergeSort {
     private static int numComparisons = 0;
+    private static long timeTaken = 0;
 
     public static void sort(int[] array) {
         numComparisons = 0;
+        timeTaken = 0;
+        long startTime = System.currentTimeMillis();
+
         sort(array, 0, array.length - 1);
+
+        long endTime = System.currentTimeMillis();
+        timeTaken = endTime - startTime;
     }
 
     static void sort(int[] array, int left, int right) {
@@ -68,5 +75,9 @@ public class MergeSort {
 
     public static int getNumComparisons() {
         return numComparisons;
+    }
+
+    public static long getTimeTaken() {
+        return timeTaken;
     }
 }

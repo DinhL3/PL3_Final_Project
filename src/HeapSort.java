@@ -2,10 +2,13 @@
 
 public class HeapSort {
     private static int numComparisons = 0;
+    private static long timeTaken = 0;
+
 
     public static void sort(int[] array) {
         numComparisons = 0;
         int length = array.length;
+        long startTime = System.currentTimeMillis();
 
         // Build a max heap
         for (int i = length / 2 - 1; i >= 0; i--) {
@@ -20,6 +23,9 @@ public class HeapSort {
             // Call heapify on the reduced heap
             heapify(array, i, 0);
         }
+
+        long endTime = System.currentTimeMillis();
+        timeTaken = endTime - startTime;
     }
 
     private static void heapify(int[] array, int size, int rootIndex) {
@@ -56,5 +62,9 @@ public class HeapSort {
 
     public static int getNumComparisons() {
         return numComparisons;
+    }
+
+    public static long getTimeTaken() {
+        return timeTaken;
     }
 }

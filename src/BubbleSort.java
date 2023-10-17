@@ -2,9 +2,14 @@
 
 public class BubbleSort {
     private static int numComparisons = 0;
+    private static long timeTaken = 0;
+
     public static void sort(int[] array) {
         numComparisons = 0;
+        timeTaken = 0;
         int length = array.length;
+        long startTime = System.currentTimeMillis();
+
         for (int i = 0; i < length - 1; i++) {
             // Iterate through the unsorted portion of the array
             for (int j = 0; j < length - i - 1; j++) {
@@ -19,9 +24,16 @@ public class BubbleSort {
                 }
             }
         }
+
+        long endTime = System.currentTimeMillis();
+        timeTaken = endTime - startTime;
     }
 
     public int getNumComparisons() {
         return numComparisons;
+    }
+
+    public static long getTimeTaken() {
+        return timeTaken;
     }
 }
