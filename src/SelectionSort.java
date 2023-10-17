@@ -1,11 +1,11 @@
 // this is O(n^2) type of sorting
 public class SelectionSort {
     public static void sort(int[] array) {
-        int arrayLength = array.length;
-        for (int i = 0; i < arrayLength - 1; i++) {
+        int length = array.length;
+        for (int i = 0; i < length - 1; i++) {
             // Find the index of the minimum element in the unsorted part of the array
             int minIndex = i;
-            for (int j = i + 1; j < arrayLength; j++) {
+            for (int j = i + 1; j < length; j++) {
                 if (array[j] < array[minIndex]) {
                     minIndex = j;
                 }

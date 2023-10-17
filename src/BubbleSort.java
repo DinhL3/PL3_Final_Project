@@ -1,15 +1,16 @@
 //this is O(n^2) type of sorting
 
 public class BubbleSort {
-    public static void sort(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    // swap arr[j] and arr[j+1]
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+    public static void sort(int[] array) {
+        int length = array.length;
+        for (int i = 0; i < length - 1; i++) {
+            // Iterate through the unsorted portion of the array
+            for (int j = 0; j < length - i - 1; j++) {
+                // If the current element is greater than the next element, swap them
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
