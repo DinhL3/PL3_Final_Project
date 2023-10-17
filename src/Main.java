@@ -2,6 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    //function to return an array of random integer, take number of ints as arg, if 10 ints, range is 0-99, if 100 ints, range is 0-999 and so on
+    public static int[] randomInts(int numInts) {
+        Random rand = new Random();
+        int[] list = new int[numInts];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = rand.nextInt(numInts * 10);
+        }
+        return list;
+    }
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String choice;
@@ -62,33 +73,19 @@ public class Main {
                     break;
 
                 case "3":
-                    Random randBubbleSort = new Random();
-                    int[] listBubbleSort = new int[10];
-                    for (int i = 0; i < listBubbleSort.length; i++) {
-                        // Generate random integers in range 0 to 99
-                        listBubbleSort[i] = randBubbleSort.nextInt(100);
-                    }
+                    // use the random function created above, to make a list of 10 random ints
+                    int[] listForCaseThree = randomInts(10);
 
                     System.out.println("\nData set before bubble sort:");
-                    for (int value : listBubbleSort) {
+                    for (int value : listForCaseThree) {
                         System.out.print(value + " ");
                     }
                     System.out.println();
 
-                    int n = listBubbleSort.length;
-                    for (int i = 0; i < n-1; i++) {
-                        for (int j = 0; j < n-i-1; j++) {
-                            if (listBubbleSort[j] > listBubbleSort[j+1]) {
-                                // swap list[j+1] and list[j]
-                                int temp = listBubbleSort[j];
-                                listBubbleSort[j] = listBubbleSort[j+1];
-                                listBubbleSort[j+1] = temp;
-                            }
-                        }
-                    }
+                    BubbleSort.sort(listForCaseThree);
 
                     System.out.println("\nData set after bubble sort:");
-                    for (int value : listBubbleSort) {
+                    for (int value : listForCaseThree) {
                         System.out.print(value + " ");
                     }
                     System.out.println();
@@ -97,22 +94,17 @@ public class Main {
 
                 case "4":
                     Random rand = new Random();
-                    int[] listQuickSort = new int[10];
-                    for (int i = 0; i < listQuickSort.length; i++) {
-                        // Generate random integers in range 0 to 99
-                        listQuickSort[i] = rand.nextInt(100);
-                    }
-
-                    System.out.println("\nData set before quick sort:");
-                    for (int value : listQuickSort) {
+                    int[] listForCaseFour = randomInts(10);
+                    System.out.println("\nData set before merge sort:");
+                    for (int value : listForCaseFour) {
                         System.out.print(value + " ");
                     }
                     System.out.println();
 
-                    quickSort(listQuickSort, 0, listQuickSort.length - 1);
+                    MergeSort.sort(listForCaseFour);
 
-                    System.out.println("\nData set after quick sort:");
-                    for (int value : listQuickSort) {
+                    System.out.println("\nData set after merge sort:");
+                    for (int value : listForCaseFour) {
                         System.out.print(value + " ");
                     }
                     System.out.println();
@@ -128,31 +120,6 @@ public class Main {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-    public static void quickSort(int[] arr, int low, int high) {
-        if (low < high) {
-            int pi = partition(arr, low, high);
-            quickSort(arr, low, pi - 1);
-            quickSort(arr, pi + 1, high);
-        }
-    }
-
-    public static int partition(int[] arr, int low, int high) {
-        int pivot = arr[high];
-        int i = (low - 1);
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-        int temp = arr[i + 1];
-        arr[i + 1] = arr[high];
-        arr[high] = temp;
-        return i + 1;
     }
 }
 
