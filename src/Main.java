@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -108,14 +109,56 @@ public class Main {
                     break;
 
                 case "5":
-//                    int[] fiveThousandInts = randomInts(1000);
+                    String[] columnNames = {"Type | No. of ints", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "9000", "10000"};
+                    Table table = new Table(columnNames);
+
+                    int[] numberOfIntsToSort = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
+                    String[] algorithms = {"BubbleSort", "SelectionSort"};
+
+                    for (String algorithm : algorithms) {
+                        for (int j = 0; j < 2; j++) {
+                            Object[] data = new Object[11];
+                            data[0] = algorithm + (j == 0 ? ", ms" : ", comparisons");
+
+                            for (int i = 0; i < numberOfIntsToSort.length; i++) {
+                                int[] list = randomInts(numberOfIntsToSort[i]);
+                                switch (algorithm) {
+                                    case "BubbleSort":
+                                        BubbleSort.sort(list);
+                                        data[i + 1] = j == 0 ? BubbleSort.getMeasurement().getTimeTaken() : BubbleSort.getMeasurement().getNumComparisons();
+                                        break;
+                                    case "SelectionSort":
+                                        SelectionSort.sort(list);
+                                        data[i + 1] = j == 0 ? SelectionSort.getMeasurement().getTimeTaken() : SelectionSort.getMeasurement().getNumComparisons();
+                                        break;
+                                }
+                            }
+
+                            table.addRow(data);
+                        }
+                    }
 
 
-//                    System.out.print("\nbubbleSort,comparisons:");
-//                    BubbleSort.sort(fiveThousandInts);
-//                    System.out.print(BubbleSort.getMeasurement().getNumComparisons());
-//                    System.out.print(" ,time:");
-//                    System.out.println(BubbleSort.getMeasurement().getTimeTaken());
+//        int[] fiveThousandInts = randomInts(1000);
+//
+//                    System.out.print("\nselectionSort,5000,comparisons:");
+//                    SelectionSort.sort(fiveThousandInts);
+//                    System.out.print(SelectionSort.getMeasurement().getNumComparisons());
+//                    System.out.print(", time:");
+//                    System.out.println(SelectionSort.getMeasurement().getTimeTaken());
+//
+//                    int[] tenThousandInts = randomInts(10000);
+//
+//                    System.out.print("\nselectionSort,10000,comparisons:");
+//                    SelectionSort.sort(tenThousandInts);
+//                    System.out.print(SelectionSort.getMeasurement().getNumComparisons());
+//                    System.out.print(", time:");
+//                    System.out.println(SelectionSort.getMeasurement().getTimeTaken());
+                    JFrame frame = new JFrame();
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.add(new JScrollPane(table.getTable()));
+                    frame.pack();
+                    frame.setVisible(true);
                     break;
 
                 case "q":
