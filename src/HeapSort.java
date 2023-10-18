@@ -33,14 +33,14 @@ public class HeapSort {
         int rightChild = 2 * rootIndex + 2;
 
         if (leftChild < size) {
-            measurement.incrementComparisons(); // increment the counter here
+            measurement.incrementComparisons();
             if (array[leftChild] > array[largest]) {
                 largest = leftChild;
             }
         }
 
         if (rightChild < size) {
-            measurement.incrementComparisons(); // increment the counter here
+            measurement.incrementComparisons();
             if (array[rightChild] > array[largest]) {
                 largest = rightChild;
             }
