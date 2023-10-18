@@ -8,11 +8,10 @@ public class Main {
         Random rand = new Random();
         int[] list = new int[numInts];
         for (int i = 0; i < list.length; i++) {
-            list[i] = rand.nextInt(numInts * 10);
+            list[i] = rand.nextInt(numInts * 10) - numInts * 5;
         }
         return list;
     }
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -147,7 +146,7 @@ public class Main {
                     }
 
                     JFrame frame = new JFrame();
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     frame.add(new JScrollPane(table.getTable()));
                     frame.pack();
                     frame.setVisible(true);
