@@ -73,9 +73,7 @@ public class Main {
                     break;
 
                 case "3":
-                    // use the random function created above, to make a list of 10 random ints
                     int[] listForCaseThree = randomInts(10);
-
                     System.out.println("\nData set before bubble sort:");
                     for (int value : listForCaseThree) {
                         System.out.print(value + " ");
@@ -93,7 +91,6 @@ public class Main {
 
 
                 case "4":
-                    Random rand = new Random();
                     int[] listForCaseFour = randomInts(10);
                     System.out.println("\nData set before merge sort:");
                     for (int value : listForCaseFour) {
@@ -111,7 +108,14 @@ public class Main {
                     break;
 
                 case "5":
-                    System.out.println("Choice 5 not implemented.");
+//                    int[] fiveThousandInts = randomInts(1000);
+
+
+//                    System.out.print("\nbubbleSort,comparisons:");
+//                    BubbleSort.sort(fiveThousandInts);
+//                    System.out.print(BubbleSort.getMeasurement().getNumComparisons());
+//                    System.out.print(" ,time:");
+//                    System.out.println(BubbleSort.getMeasurement().getTimeTaken());
                     break;
 
                 case "q":

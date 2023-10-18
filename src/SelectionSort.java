@@ -1,11 +1,9 @@
 // this is O(n^2) type of sorting
 public class SelectionSort {
-    private static int numComparisons = 0;
-    private static long timeTaken = 0;
+    private static Measurement measurement = new Measurement();
 
     public static void sort(int[] array) {
-        numComparisons = 0;
-        timeTaken = 0;
+        measurement = new Measurement();
         int length = array.length;
         long startTime = System.currentTimeMillis();
 
@@ -13,7 +11,7 @@ public class SelectionSort {
             // Find the index of the minimum element in the unsorted part of the array
             int minIndex = i;
             for (int j = i + 1; j < length; j++) {
-                numComparisons++;
+                measurement.incrementComparisons();
 
                 if (array[j] < array[minIndex]) {
                     minIndex = j;
@@ -27,14 +25,10 @@ public class SelectionSort {
         }
 
         long endTime = System.currentTimeMillis();
-        timeTaken = endTime - startTime;
+        measurement.setTimeTaken(endTime - startTime);
     }
 
-    public static int getNumComparisons() {
-        return numComparisons;
-    }
-
-    public static long getTimeTaken() {
-        return timeTaken;
+    public static Measurement getMeasurement() {
+        return measurement;
     }
 }

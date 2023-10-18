@@ -1,12 +1,10 @@
 //this is O(n^2) type of sorting
 
 public class BubbleSort {
-    private static int numComparisons = 0;
-    private static long timeTaken = 0;
+    private static Measurement measurement = new Measurement();
 
     public static void sort(int[] array) {
-        numComparisons = 0;
-        timeTaken = 0;
+        measurement = new Measurement();
         int length = array.length;
         long startTime = System.currentTimeMillis();
 
@@ -16,7 +14,7 @@ public class BubbleSort {
                 // If the current element is greater than the next element, swap them
                 if (array[j] > array[j + 1]) {
 
-                    numComparisons++;
+                    measurement.incrementComparisons();
 
                     int temp = array[j];
                     array[j] = array[j + 1];
@@ -26,14 +24,10 @@ public class BubbleSort {
         }
 
         long endTime = System.currentTimeMillis();
-        timeTaken = endTime - startTime;
+        measurement.setTimeTaken(endTime - startTime);
     }
 
-    public int getNumComparisons() {
-        return numComparisons;
-    }
-
-    public static long getTimeTaken() {
-        return timeTaken;
+    public static Measurement getMeasurement() {
+        return measurement;
     }
 }
