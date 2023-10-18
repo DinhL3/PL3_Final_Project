@@ -1,18 +1,16 @@
 //this is O(n*log(n)) type of sorting
 
 public class MergeSort {
-    private static int numComparisons = 0;
-    private static long timeTaken = 0;
+    private static Measurement measurement = new Measurement();
 
     public static void sort(int[] array) {
-        numComparisons = 0;
-        timeTaken = 0;
+        measurement = new Measurement();
         long startTime = System.currentTimeMillis();
 
         sort(array, 0, array.length - 1);
 
         long endTime = System.currentTimeMillis();
-        timeTaken = endTime - startTime;
+        measurement.setTimeTaken(endTime - startTime);
     }
 
     static void sort(int[] array, int left, int right) {
@@ -46,7 +44,7 @@ public class MergeSort {
         int k = left;
 
         while (i < leftSize && j < rightSize) {
-            numComparisons++;
+            measurement.incrementComparisons();
 
             if (leftArray[i] <= rightArray[j]) {
                 array[k] = leftArray[i];
@@ -73,11 +71,7 @@ public class MergeSort {
         }
     }
 
-    public static int getNumComparisons() {
-        return numComparisons;
-    }
-
-    public static long getTimeTaken() {
-        return timeTaken;
+    public static Measurement getMeasurement() {
+        return measurement;
     }
 }

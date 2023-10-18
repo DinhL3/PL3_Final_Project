@@ -1,12 +1,10 @@
 //this is O(n*log(n)) type of sorting
 
 public class HeapSort {
-    private static int numComparisons = 0;
-    private static long timeTaken = 0;
-
+    private static Measurement measurement = new Measurement();
 
     public static void sort(int[] array) {
-        numComparisons = 0;
+        measurement = new Measurement();
         int length = array.length;
         long startTime = System.currentTimeMillis();
 
@@ -25,7 +23,7 @@ public class HeapSort {
         }
 
         long endTime = System.currentTimeMillis();
-        timeTaken = endTime - startTime;
+        measurement.setTimeTaken(endTime - startTime);
     }
 
     private static void heapify(int[] array, int size, int rootIndex) {
@@ -35,14 +33,14 @@ public class HeapSort {
         int rightChild = 2 * rootIndex + 2;
 
         if (leftChild < size) {
-            numComparisons++; // increment the counter here
+            measurement.incrementComparisons(); // increment the counter here
             if (array[leftChild] > array[largest]) {
                 largest = leftChild;
             }
         }
 
         if (rightChild < size) {
-            numComparisons++; // increment the counter here
+            measurement.incrementComparisons(); // increment the counter here
             if (array[rightChild] > array[largest]) {
                 largest = rightChild;
             }
@@ -60,11 +58,7 @@ public class HeapSort {
         array[index2] = temp;
     }
 
-    public static int getNumComparisons() {
-        return numComparisons;
-    }
-
-    public static long getTimeTaken() {
-        return timeTaken;
+    public static Measurement getMeasurement() {
+        return measurement;
     }
 }

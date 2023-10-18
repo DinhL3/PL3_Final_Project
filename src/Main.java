@@ -113,7 +113,7 @@ public class Main {
                     Table table = new Table(columnNames);
 
                     int[] numberOfIntsToSort = {1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000};
-                    String[] algorithms = {"BubbleSort", "SelectionSort"};
+                    String[] algorithms = {"BubbleSort", "SelectionSort", "MergeSort", "HeapSort"};
 
                     for (String algorithm : algorithms) {
                         for (int j = 0; j < 2; j++) {
@@ -131,6 +131,14 @@ public class Main {
                                         SelectionSort.sort(list);
                                         data[i + 1] = j == 0 ? SelectionSort.getMeasurement().getTimeTaken() : SelectionSort.getMeasurement().getNumComparisons();
                                         break;
+                                    case "MergeSort":
+                                        MergeSort.sort(list);
+                                        data[i + 1] = j == 0 ? MergeSort.getMeasurement().getTimeTaken() : MergeSort.getMeasurement().getNumComparisons();
+                                        break;
+                                    case "HeapSort":
+                                        HeapSort.sort(list);
+                                        data[i + 1] = j == 0 ? HeapSort.getMeasurement().getTimeTaken() : HeapSort.getMeasurement().getNumComparisons();
+                                        break;
                                 }
                             }
 
@@ -138,22 +146,6 @@ public class Main {
                         }
                     }
 
-
-//        int[] fiveThousandInts = randomInts(1000);
-//
-//                    System.out.print("\nselectionSort,5000,comparisons:");
-//                    SelectionSort.sort(fiveThousandInts);
-//                    System.out.print(SelectionSort.getMeasurement().getNumComparisons());
-//                    System.out.print(", time:");
-//                    System.out.println(SelectionSort.getMeasurement().getTimeTaken());
-//
-//                    int[] tenThousandInts = randomInts(10000);
-//
-//                    System.out.print("\nselectionSort,10000,comparisons:");
-//                    SelectionSort.sort(tenThousandInts);
-//                    System.out.print(SelectionSort.getMeasurement().getNumComparisons());
-//                    System.out.print(", time:");
-//                    System.out.println(SelectionSort.getMeasurement().getTimeTaken());
                     JFrame frame = new JFrame();
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.add(new JScrollPane(table.getTable()));
